@@ -22,7 +22,7 @@ func newConfig(t *testing.T, path string) *ws.Config {
 }
 
 func startServer() {
-	configServer()
+	ConfigServer()
 	server := httptest.NewServer(nil)
 	serverAddr = server.Listener.Addr().String()
 	log.Print("Test Server running on ", serverAddr)
