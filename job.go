@@ -17,14 +17,18 @@ type Job struct {
 }
 
 func (j *Job) RunCommand() (err error) {
-	cmd := exec.Command("tr", "a-z", "A-Z")
-	cmd.Stdin = strings.NewReader("some input")
-	var out bytes.Buffer
-	cmd.Stdout = &out
-	err = cmd.Run()
-	if err == nil {
-		h.broadcast <- out.String()
-	}
+    cmdLines := strings.Split(Projects[j.ProjectID].Provisioner, "\n")
+    for _, l := range cmdLines {
+        foo := strings.Split(l, " ")
+        cmd := exec.Command(foo[0], foo[1:]...)
+        var out bytes.Buffer
+        cmd.Stdout = &out
+        err = cmd.Run()
+        if err == nil {
+            h.broadcast <- out.String()
+        }
+
+    }
 	return
 }
 
