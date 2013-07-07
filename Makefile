@@ -14,6 +14,8 @@ VENDOR_LIBS = ${FRONTEND}/vendor/jquery-2.0.3.min.js \
 			  ${FRONTEND}/vendor/handlebars.runtime.js
 
 
+all: test build
+
 test: .PHONY
 	go test -v 
 
