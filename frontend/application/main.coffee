@@ -10,6 +10,7 @@ class App extends Backbone.Router
 
   routes:
     "": "index"
+    "project-detail/:id/": "projectView"
 
   index: ->
     console.log "Index view"
@@ -17,6 +18,9 @@ class App extends Backbone.Router
     view = new projects.CollectionView
       model: collection
     $("#page_body").html view.el
+
+  projectView: (id) ->
+    console.log "Project view"
 
 
 $ ->
