@@ -2,6 +2,7 @@ package deployer
 
 import (
 	"code.google.com/p/go.net/websocket"
+	"log"
 )
 
 type connection struct {
@@ -35,6 +36,7 @@ func (c *connection) writer() {
 }
 
 func wsHandler(ws *websocket.Conn) {
+	log.Println("websocket connected")
 	c := &connection{send: make(chan string, 256), ws: ws}
 	h.register <- c
 	defer func() { h.unregister <- c }()
