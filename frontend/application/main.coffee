@@ -21,9 +21,21 @@ class App extends Backbone.Router
 
   projectView: (id) ->
     console.log "Project view"
-
+    model = new projects.Model
+    view = new projects.DetailView
+      model: model
+    $(".detail-container").html view.el
 
 $ ->
   console.log "Starting"
+
+  conn = new WebSocket("ws://127.0.0.1:3999/ws")
+  conn.onclose = (evt) ->
+    console.log "closed"
+  conn.onmessage = (evt) ->
+    console.log evt.data
+  conn.onerror = (evt) ->
+    console.log evt
+
   app = new App()
   Backbone.history.start()
