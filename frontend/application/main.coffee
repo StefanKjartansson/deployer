@@ -13,12 +13,10 @@ class App extends Backbone.Router
 
   index: ->
     console.log "Index view"
-
     collection = new projects.Collection
     view = new projects.CollectionView
       model: collection
     $("#page_body").html view.el
-
 
 
 $ ->
