@@ -14,8 +14,7 @@ VENDOR_LIBS = ${FRONTEND}/vendor/jquery-2.0.3.min.js \
 
 
 test: .PHONY
-	${NODE_BIN}/mocha --compilers coffee:coffee-script --reporter list ${FRONTEND}/test/*.coffee
-	go test -v
+	go test -v 
 
 template-js:
 	${NODE_BIN}/handlebars ${FRONTEND}/application/templates/*.handlebars -f temp/templates.js
