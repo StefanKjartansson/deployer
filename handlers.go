@@ -13,10 +13,8 @@ const (
 	json_header = "application/json; charset=utf-8"
 )
 
-
 type Context struct {
 }
-
 
 func IndexHandler(w http.ResponseWriter, req *http.Request) {
 
@@ -32,6 +30,7 @@ func IndexHandler(w http.ResponseWriter, req *http.Request) {
 
 func ProjectListHandler(w http.ResponseWriter, req *http.Request) {
 
+	log.Println("List handler")
 	hasWritten := false
 
 	w.Header().Set("Content-Type", json_header)
@@ -53,6 +52,7 @@ func ProjectListHandler(w http.ResponseWriter, req *http.Request) {
 
 func ProjectDetailHandler(w http.ResponseWriter, req *http.Request) {
 
+	log.Println("Detail handler")
 	vars := mux.Vars(req)
 	w.Header().Set("Content-Type", json_header)
 
@@ -64,7 +64,7 @@ func ProjectDetailHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func DeployHandler(w http.ResponseWriter, req *http.Request) {
-
+	log.Println("Deploy handler")
 	vars := mux.Vars(req)
 	w.Header().Set("Content-Type", json_header)
 
@@ -80,5 +80,6 @@ func DeployHandler(w http.ResponseWriter, req *http.Request) {
 		log.Fatal(err)
 	}
 	go j.Start()
+	log.Println("Called start")
 	w.Write(b)
 }
