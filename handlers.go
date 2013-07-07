@@ -13,24 +13,10 @@ const (
 	json_header = "application/json; charset=utf-8"
 )
 
-var (
-	Projects = make(map[string]Project)
-)
 
 type Context struct {
 }
 
-type Project struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
-func NewProject(name string) (p Project) {
-	p.ID = Uuid()
-	p.Name = name
-	Projects[p.ID] = p
-	return
-}
 
 func IndexHandler(w http.ResponseWriter, req *http.Request) {
 
