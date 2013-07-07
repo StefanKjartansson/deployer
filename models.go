@@ -16,6 +16,7 @@ func NewProject(name string) (p Project) {
 	p.Name = name
     p.Provisioner = `
 git status
+uptime
     `
 	Projects[p.ID] = p
 	return
