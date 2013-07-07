@@ -1,0 +1,23 @@
+{
+  "name": "deployer",
+  "description": "golang deployment tool",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "handlebars": "~1.0.12",
+    "sinon-chai": "~2.4.0",
+    "underscore": "~1.5.0",
+    "backbone": "~1.0.0",
+    "coffee-script": "~1.6.3",
+    "underscore.string": "~2.3.1",
+    "uglify-js": "~2.3.6",
+    "chai": "~1.7.2",
+    "coffeeify": "~0.5.1",
+    "clean-css": "~1.0.10",
+    "sinon": "~1.7.3",
+    "mocha": "~1.12.0",
+    "browserify": "~2.23.1",
+    "jquery": "~1.8.3"
+  },
+  "devDependencies": {}
+}
