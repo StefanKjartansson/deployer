@@ -1,5 +1,6 @@
 NODE_BIN = ./node_modules/.bin
 FRONTEND = frontend
+NIB = ./node_modules/nib/lib/nib
 
 APP = static/app.min.js
 
@@ -28,7 +29,7 @@ minify-js: compile-js
 	rm -fr temp/*.js
 
 minify-css:
-	cat ${CSS_ORIGINALS} | ${NODE_BIN}/cleancss -o ${CSS_FINAL}
+	${NODE_BIN}/stylus --use ${NIB} < ${FRONTEND}/stylesheets/style.styl | cat ${CSS_ORIGINALS} - | ${NODE_BIN}/cleancss -o ${CSS_FINAL}
 
 build: minify-js minify-css 
 	go build misc/deployer.go
