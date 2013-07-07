@@ -9,10 +9,10 @@ exports.Collection = class ProjectCollection extends Backbone.Collection
 exports.CollectionView = class ProjectCollectionView extends Backbone.View
 
   initialize: (options) ->
-    @template = Handlebars.templates.eventContainer
-    @listenTo(@model, 'change', @render)
+    @template = Handlebars.templates.projects
+    @listenTo(@model, 'sync', @render)
     @model.fetch()
 
   render: ->
-    @$el.html @template {}
-
+    @$el.html @template @model.toJSON()
+    @
