@@ -21,8 +21,8 @@ type Context struct {
 }
 
 type Project struct {
-	ID   string
-	Name string
+	ID   string `json:"id"`
+	Name string `json:"name"`
 }
 
 func NewProject(name string) (p Project) {
