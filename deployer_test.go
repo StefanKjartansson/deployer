@@ -9,6 +9,8 @@ import (
 	"net"
 	"net/http"
 	"net/http/httptest"
+	"os"
+	"os/exec"
 	"sync"
 	"testing"
 )
@@ -157,4 +159,28 @@ func TestDeployHandler(t *testing.T) {
 
 	}
 
+}
+
+func TestFrontend(t *testing.T) {
+	once.Do(startServer)
+
+	go h.run()
+
+	_ = NewProject("frontend_test")
+
+	cmd := exec.Command("./node_modules/.bin/mocha",
+		"--compilers", "coffee:coffee-script",
+		"--reporter", "list",
+		"frontend/test/*.coffee")
+
+	e := os.Environ()
+	e = append(e, fmt.Sprintf("TEST_SERVER=%s", serverAddr))
+
+	cmd.Env = e
+
+	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		t.Fatal(err)
+	}
 }
