@@ -124,8 +124,6 @@ func TestListHandler(t *testing.T) {
 func TestDeployHandler(t *testing.T) {
 	once.Do(startServer)
 
-	go h.run()
-
 	real_test := NewProject("real_test")
 	url := fmt.Sprintf("http://%s/projects/%s/deploy", serverAddr, real_test.ID)
 
@@ -163,8 +161,6 @@ func TestDeployHandler(t *testing.T) {
 
 func TestFrontend(t *testing.T) {
 	once.Do(startServer)
-
-	go h.run()
 
 	_ = NewProject("frontend_test")
 

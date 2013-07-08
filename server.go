@@ -27,4 +27,6 @@ func ConfigServer() {
 	})
 
 	http.Handle("/ws", websocket.Handler(wsHandler))
+
+	go h.run()
 }
