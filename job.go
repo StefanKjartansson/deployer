@@ -36,7 +36,6 @@ func (j *Job) RunCommand() (err error) {
 
 func (j *Job) Start() {
 	message := fmt.Sprintf("Starting job %s at %v.", j.ID, j.Started)
-	log.Println(message)
 	h.broadcast <- message
 	err := j.RunCommand()
 	if err != nil {
@@ -45,8 +44,6 @@ func (j *Job) Start() {
 	(*j).Ended = time.Now()
 	(*j).Status = "ended"
 	message = fmt.Sprintf("Ending job %s at %v.", j.ID, j.Ended)
-
-	log.Println(message)
 
 	h.broadcast <- message
 }
