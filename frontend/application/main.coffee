@@ -5,6 +5,11 @@ Backbone = require 'Backbone'
 
 projects = require './projects.coffee'
 
+conn = new WebSocket("ws://127.0.0.1:3999/ws")
+
+conn.onopen = ->
+  console.log "WebSocket connected"
+
 
 class App extends Backbone.Router
 
@@ -13,15 +18,14 @@ class App extends Backbone.Router
     "project-detail/:id/": "projectView"
 
   index: ->
-    console.log "Index view"
     collection = new projects.Collection
     view = new projects.CollectionView
       model: collection
     $("#page_body").html view.el
 
   projectView: (id) ->
-    console.log "Project view"
     model = new projects.Model
+      id: id
     view = new projects.DetailView
       model: model
     $(".detail-container").html view.el
@@ -29,7 +33,6 @@ class App extends Backbone.Router
 $ ->
   console.log "Starting"
 
-  conn = new WebSocket("ws://127.0.0.1:3999/ws")
   conn.onclose = (evt) ->
     console.log "closed"
   conn.onmessage = (evt) ->
