@@ -1,6 +1,9 @@
 language: go
 go: 1.1
 
+before_install:
+ - npm install
+
 install:
  - go get code.google.com/p/go.net/websocket
  - go get code.google.com/p/gorilla/mux
